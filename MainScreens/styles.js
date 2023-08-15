@@ -118,13 +118,55 @@ export default StyleSheet.create({
         fontSize: 20,
     },
     saveGoals: {
-        width: 140,
-        height: 40,
+        width: 150,
+        height: 50,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         alignContent: 'center',
-        backgroundColor: 'green'
+        backgroundColor: 'green',
     },
+    cancel:{
+        margin: 20,
+        padding: 15,
+    },
+    progContainer:{
+        marginBottom: 30,
+    },
+    progressbar: {
+        width: 50,
+    },
+    progressTitle: {
+        fontSize: 20,
+    },
+    settingsOption: {
+        width: '100%',
+        height: 50,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        backgroundColor: '#6495ed'
+    },
+    settingsText: {
+        fontSize: 18,
+        fontWeight: '600'
+    },
+    settingsContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center'
+    },
+    numInput: {
+        height: 48,
+        borderRadius: 5,
+        overflow: "hidden",
+        backgroundColor: "white",
+        borderColor: "#d3d3d3",
+        borderWidth: 1,
+        width: 110,
+        fontSize: 20,
+        textAlign: 'center'
+    }
 })

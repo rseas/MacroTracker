@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
             <View style={styles.loginContainer}>
                 <View style={styles.loginHeaderContainer}>
                     <Text style={styles.loginWelcome}>Welcome to MacroCalculator!</Text>
-                    <Text style={styles.loginSubheader}>Please sign in with your Apple id</Text>
+                    <Text style={styles.loginSubheader}></Text>
                 </View>
                 <View style={styles.loginButtonView}>
                     <TextInput
