@@ -3,18 +3,38 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Account, Meals, Login, Registration } from './MainScreens';
-import { TouchableOpacity, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeTabs =  () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Meals" component={Meals}/>
-      <Tab.Screen name="Home" component={Home}/>
-      <Tab.Screen name="Account" component={Account}/>
+    <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false, tabBarShowLabel: false, tabBarActiveBackgroundColor: 'green'}}>
+      <Tab.Screen name="Meals" component={Meals} 
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="silverware-fork-knife" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen name="Home" component={Home}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="home" size={24} color="black"/>
+          ),
+            
+        }}
+      />
+      <Tab.Screen name="Account" component={Account}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="account" size={24} color="black" />
+          ),
+            
+        }}
+      />
     </Tab.Navigator>
   )
 }

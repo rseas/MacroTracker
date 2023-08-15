@@ -4,25 +4,35 @@ import styles from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import 'react-native-url-polyfill/auto';
 
-import {supabase} from '../supabase/supabase'
+import Parse from "parse/react-native.js";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
+Parse.setAsyncStorage(AsyncStorage);
+Parse.initialize('brL7WBPHzNyhKnWg5fp78GOsdLcWs1yODCSW150N','Y6Hw4zmF0bJZTFpDu5buneq1NFuH0BfUIBHOZqVq');
+Parse.serverURL = 'https://parseapi.back4app.com';
 
 const Login = ({ navigation }) => {
 
-    const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const loginPress = async () => {
-        const {data, error} = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-        })
-        if(error){
-            alert("Incorrect email or password.  Please enter them again.")
+        if (username === "" || password === "" ) {
+            alert('Please fill in login fields correctly.')
         } else {
-            navigation.navigate("HomeTabs");
+            try {
+                await Parse.User.logIn(username, password);
+                // this.submitAndClear();
+                navigation.navigate("HomeTabs");       
+            } catch (error) {    
+                alert(error);
+            }
         }
     }
+
 
     const signUp = () => {
         navigation.navigate("Registration");
@@ -38,10 +48,10 @@ const Login = ({ navigation }) => {
                 <View style={styles.loginButtonView}>
                     <TextInput
                         style={styles.input}
-                        placeholder='Email'
+                        placeholder='Username'
                         placeholderTextColor='#aaaaaa'
-                        onChangeText={(text) => setEmail(text)}
-                        value={email}
+                        onChangeText={(text) => setUsername(text)}
+                        value={username}
                         autoCapitalize='none'
                         maxLength={25}
                     />

@@ -1,33 +1,57 @@
 import React, {useEffect, useState} from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
-import { supabase } from '../supabase/supabase';
 import { TextInput, TouchableOpacity, Text, View } from 'react-native';
+
+import Parse from "parse/react-native.js";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Registration = ({navigation}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState(''); 
+    const [username, setUsername] = useState('');    
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
+
+    const submitAndClear = () => {
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setPassword2('');
+        setUsername('');        
+    }
+
     const register = async () => {
-        if(password != password2){
-            alert("Passwords do not match!")
+        if (username.trim() === "" || username === undefined || email.trim() === "" || email === undefined  || password.trim() === "" || password === undefined ) {
+            alert('Please enter fields correctly.')  
+        } else if(password != password2){
+            alert('Passwords do not match.')
         } else {
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-                first_name: firstName,
-                last_ame: lastName,
-            })
-            if(error){
+            try {
+                Parse.User.logOut();
+                let user = new Parse.User();
+                user.set("username", username);
+                user.set("email", email);
+                user.set("password", password);
+                user.set("first_name", firstName);
+                user.set("last_name", lastName);
+                const result = await user.signUp();
+                
+                AsyncStorage.setItem('sessionToken', result.getSessionToken());
+                AsyncStorage.setItem('username', result.getUsername());
+                submitAndClear();
+                alert('Thanks for signing up! Please check your inbox and confirm your email then log in.')
+                navigation.goBack();  
+
+            } catch (error) {
+                console.log(error)
                 alert(error)
-            } else {
-                alert("Congratulations! You have officially signed up for MacroTracker. Please login to your new account.")
-                navigation.navigate("Login");
             }
         }
+        
     }
 
     return(
@@ -57,6 +81,15 @@ const Registration = ({navigation}) => {
                     placeholderTextColor='#aaaaaa'
                     onChangeText={(text) => setEmail(text)}
                     value={email}
+                    autoCapitalize='none'
+                    maxLength={25}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder='Username'
+                    placeholderTextColor='#aaaaaa'
+                    onChangeText={(text) => setUsername(text)}
+                    value={username}
                     autoCapitalize='none'
                     maxLength={25}
                 />

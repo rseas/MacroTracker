@@ -3,7 +3,10 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     screen: {
         flex: 1,
-        margin: '4%'
+        margin: '4%',
+        marginTop: '15%',
+        marginRight: '8%',
+        marginLeft: '8%'
     },
     loginButton: {
         width: 200,
@@ -79,5 +82,49 @@ export default StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: '600',
-    }
+    },
+    emptyGoals: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noEvent: {
+        fontSize: 14,
+        marginTop: 13,
+        color: 'black',
+        textAlign: 'center'
+    },
+    setGoals: {
+        width: 100,
+        height: 40,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        alignContent: 'center',
+    },
+    modalOverlay:{
+        padding: '10%',
+    },
+    goalInput: {
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 15,
+        padding: '3%',
+    },
+    goalInputText: {
+        fontSize: 20,
+    },
+    saveGoals: {
+        width: 140,
+        height: 40,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        alignContent: 'center',
+        backgroundColor: 'green'
+    },
 })
