@@ -2,7 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles'
 
-const Meals = () => {
+const Meals = ({navigation}) => {
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            
+        });
+        return unsubscribe;
+    },[]);
+
     return(
         <KeyboardAwareScrollView style={styles.screen}>
 

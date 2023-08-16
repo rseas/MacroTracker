@@ -4,7 +4,7 @@ export default StyleSheet.create({
     screen: {
         flex: 1,
         margin: '4%',
-        marginTop: '15%',
+        marginTop: '10%',
         marginRight: '8%',
         marginLeft: '8%'
     },

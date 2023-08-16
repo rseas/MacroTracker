@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home, Account, Meals, Login, Registration } from './MainScreens';
+import { Home, Account, Meals, Login, Registration, Welcome } from './MainScreens';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const HomeTabs =  () => {
   return (
-    <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false, tabBarShowLabel: false, tabBarActiveBackgroundColor: 'green'}}>
+    <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: true, tabBarShowLabel: false, tabBarActiveBackgroundColor: 'green'}}>
       <Tab.Screen name="Meals" component={Meals} 
         options={{
           tabBarIcon: () => (
@@ -50,6 +50,7 @@ export default function App() {
             headerBackTitleVisible: true
           }}
         />
+        <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }}/>
         <Stack.Screen
           name="HomeTabs"
           component={HomeTabs}

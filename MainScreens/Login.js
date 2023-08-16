@@ -24,9 +24,13 @@ const Login = ({ navigation }) => {
             alert('Please fill in login fields correctly.')
         } else {
             try {
-                await Parse.User.logIn(username, password);
-                // this.submitAndClear();
-                navigation.navigate("HomeTabs");       
+                const user = await Parse.User.logIn(username, password);
+                
+                if(user.authData && user.authData.isNewUser || user.get('goalsSet') == false){
+                    navigation.navigate("Welcome")
+                } else {
+                    navigation.navigate("HomeTabs");      
+                } 
             } catch (error) {    
                 alert(error);
             }
