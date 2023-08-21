@@ -4,7 +4,7 @@ export default StyleSheet.create({
     screen: {
         flex: 1,
         margin: '4%',
-        marginTop: '10%',
+        marginTop: '5%',
         marginRight: '8%',
         marginLeft: '8%'
     },
@@ -168,5 +168,8 @@ export default StyleSheet.create({
         width: 110,
         fontSize: 20,
         textAlign: 'center'
-    }
+    },
+    header: {
+        alignItems: 'center',
+    },
 })
