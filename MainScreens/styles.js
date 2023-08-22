@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     screen: {
         flex: 1,
-        margin: '4%',
-        marginTop: '5%',
         marginRight: '8%',
         marginLeft: '8%'
     },
@@ -171,5 +169,61 @@ export default StyleSheet.create({
     },
     header: {
         alignItems: 'center',
+        marginTop: 13,
     },
+    addButton :{
+        alignContent: 'center',
+        alignItems: 'flex-end',
+        padding: 5
+    },
+    addButtonText: {
+        fontSize: 15,
+        color: 'blue',
+    },
+
+
+    addItemButton :{
+        alignContent: 'center',
+        alignItems: 'flex-end',
+        padding: 5
+    },
+    addItemText: {
+        fontSize: 15,
+        color: 'blue',
+    },
+    varList:{
+        marginTop: 15,
+        marginHorizontal: '5%',
+        backgroundColor: '#f5f5f5',
+        borderRadius: 12,
+    },
+    var: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'center',
+        alignItems: 'center',
+        padding: 9,
+    },
+    varTitle: {
+        fontSize: 18,
+    },
+    confirmAddItem: {
+        width: 125,
+        height: 50,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        alignContent: 'center',
+        backgroundColor: '#63e5ff',
+    },
+    nameInput: {
+        height: 48,
+        borderRadius: 5,
+        overflow: "hidden",
+        backgroundColor: "white",
+        borderColor: "#d3d3d3",
+        borderWidth: 1,
+        width: '70%'
+    }
 })
