@@ -10,7 +10,7 @@ upon the user's request.
 - React.js
 - Node.js
 - Expo
-- back4App backend
+- back4App (Parse)
 
 ## Usage Examples
 
