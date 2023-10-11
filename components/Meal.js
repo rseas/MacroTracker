@@ -7,7 +7,7 @@ const Meal = ({item}) => {
 
     return (
         <View>
-            <Text>{item.name}</Text>
+            <Text>{item.get('name')}</Text>
         </View>
     )
 }

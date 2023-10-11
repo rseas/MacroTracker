@@ -7,9 +7,11 @@ import NumericInput from 'react-native-numeric-input';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/native';
 import SwitchSelector from "react-native-switch-selector";
+import Meal from '../components/Meal';
 
 const AddMeal = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [mealItems, setMealItems] = useState([]);
 
     const AddNewItem = ({isVisible, onClose}) => {
         
@@ -18,7 +20,7 @@ const AddMeal = ({navigation}) => {
         const [protein, setProtein] = useState(0);
         const [carbs, setCarbs] = useState(0);
         const [fats, setFats] = useState(0);
-        const [servingSize, setServingSize] = useState(0);
+        const [servingSize, setServingSize] = useState(1);
         const [servingSizeType, setServingSizeType] = useState('g');
 
         const press = async () =>{
@@ -43,11 +45,14 @@ const AddMeal = ({navigation}) => {
             const acl = new Parse.ACL();
             acl.setReadAccess(user, true);
             acl.setWriteAccess(user, true);
-            
+
             newItem.setACL(acl);
+            
             try{
                 await newItem.save();
-                navigation.goBack();
+                setMealItems([...mealItems, newItem])
+                console.log(newItem)
+                exitModal();
             } catch (e) {
                 alert(e);
             } 
@@ -68,6 +73,7 @@ const AddMeal = ({navigation}) => {
                                 style={styles.nameInput}
                                 defaultValue={name}
                                 onChangeText={(n) => setName(n)}
+                                placeholder="   Enter the item's name..."
                             />
                         </View>
                         <View style={styles.var}>
@@ -93,7 +99,7 @@ const AddMeal = ({navigation}) => {
                                 value={servingSize}
                                 totalWidth={165}
                                 totalHeight={50}
-                                minValue={0}
+                                minValue={1}
                                 rounded
                                 maxValue={1000}
                             />
